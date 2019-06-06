@@ -1,0 +1,31 @@
+﻿<Page x:Class="Fin.Menu" x:Name="MenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Fin"
+      mc:Ignorable="d" 
+      Title="MenuPage" Background="BlueViolet" Width="800" Height="600">
+    <Canvas x:Name="Menu_Canvas">
+    <Grid Height="600" Width="800">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="1" Content="Start" Width="230" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" Click="Button_Click_1">
+        </Button>
+
+        <Button Grid.Row="2" Content="Load" Width="230" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" >
+        </Button>
+
+        <Button Grid.Row="3" Content="Exit" Width="230" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" Click="Button_Click" >
+        </Button>
+        
+    </Grid>
+    </Canvas>
+</Page>
