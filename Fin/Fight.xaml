@@ -34,8 +34,5 @@
         <Label x:Name="HP_Hero2" Content="Label" Canvas.Left="660" Canvas.Top="35" Width="130"/>
         <Label x:Name="HP_Hero3" Content="Label" Canvas.Left="660" Canvas.Top="61" Width="130"/>
         <Slider x:Name="Timer_Enem" Canvas.Top="327" Height="31" Width="286" Canvas.Left="9" Maximum="800"/>
-        <Slider x:Name="Timer_Hero1" Canvas.Top="363" Height="25" Width="130" Canvas.Left="660" Maximum="800"/>
-        <Slider x:Name="Timer_Hero2" Canvas.Top="388" Height="25" Width="130" Canvas.Left="660" Maximum="800"/>
-        <Slider x:Name="Timer_Hero3" Canvas.Top="413" Height="25" Width="130" Canvas.Left="660" Maximum="800"/>
     </Canvas>
 </Page>

@@ -40,12 +40,20 @@ namespace Fin
             
 
             //dbskills = new SQLiteConnection("Data Source=D://Prog//Fin//Fin//Resource//DB//Skills.db;Version=3;");
-            dbskills = new SQLiteConnection("Data Source=D:\\Prog\\Fin\\Fin\\Resource\\DB\\DBMain.db;Version=3;");
+            dbskills = new SQLiteConnection("Data Source=C://Users//Admin//Source//Repos//Fin//Fin//Resource//DB//DBMain.db;Version=3;");
             dbskills.Open();
-            
-            list.Items.Add("Hero1");
-            list.Items.Add("Hero2");
-            list.Items.Add("Hero3");
+
+            ListBoxItem l1 = new ListBoxItem();
+            l1.Content = "Hero1";
+            ListBoxItem l2 = new ListBoxItem();
+            l2.Content = "Hero2";
+            ListBoxItem l3 = new ListBoxItem();
+            l3.Content = "Hero3";
+
+
+            list.Items.Add(l1);
+            list.Items.Add(l2);
+            list.Items.Add(l3);
 
 
             
@@ -95,7 +103,9 @@ namespace Fin
 
             foreach (var Item in list.Items)
             {
-                List_hl.Items.Add(Item.ToString());
+                string st = ((ListBoxItem)(Item)).Content.ToString();
+
+                List_hl.Items.Add(st);
             }
 
         }
@@ -175,15 +185,23 @@ namespace Fin
                 List_hl.Visibility = Visibility.Visible;
             }
             t_Copy.Visibility = Visibility.Hidden;
+
+          //  MessageBox.Show(list.Items[list.SelectedIndex].ToString());
+
+          (  (ListBoxItem)(list.Items[list.SelectedIndex])).IsEnabled = false; 
+            //lbi
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
+               
+           
                 t.Visibility = Visibility.Hidden;
-                lb.Content = list.SelectedItem.ToString();
-                string sql1 = "SELECT Skil1, Skil2, Skil3, Skil4 FROM Heroes WHERE Heroes.Name = '" + list.SelectedItem.ToString() + "'";
+                lb.Content = ((ListBoxItem)(list.SelectedItem)).Content.ToString();
+
+                string sql1 = "SELECT Skil1, Skil2, Skil3, Skil4 FROM Heroes WHERE Heroes.Name = '" + lb.Content.ToString() + "'";
                 SQLiteCommand command1 = new SQLiteCommand(sql1, dbskills);
                 SQLiteDataReader reader1 = command1.ExecuteReader();
                 while (reader1.Read())
@@ -249,7 +267,8 @@ namespace Fin
         private void Lose()
         {
             // Fight_page.NavigationService.Navigate(new Uri("MainWindow.xaml", UriKind.Relative));
-            Fight_page.NavigationService.GoBack();
+
+            Fight_page.NavigationService.Navigate(new Menu());
         }
 
 

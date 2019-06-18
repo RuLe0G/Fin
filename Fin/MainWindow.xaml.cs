@@ -76,7 +76,9 @@ namespace Fin
             myEllipse.Stroke = Brushes.Black;
             myEllipse.Width = 100;
             myEllipse.Height = 100;
-            myEllipse.Margin = new Thickness(250, 250, 0, 0);
+            //myEllipse.Margin = new Thickness(250, 250, 0, 0);
+            myEllipse.RenderTransform = new TranslateTransform(250, 250);
+
             scene.Children.Add(myEllipse);
 
 
