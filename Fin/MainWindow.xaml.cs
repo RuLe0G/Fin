@@ -21,9 +21,11 @@ namespace Fin
     /// </summary>
     public partial class MainWindow : Page
     {
+
         int x = 100;
         int y = 100;
         Rectangle hero = new Rectangle();
+        Ellipse myEllipse = new Ellipse();
         DispatcherTimer timer = new DispatcherTimer();
         int currentFrame = 10;
         int[] animations = new int[] { 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28};
@@ -48,22 +50,41 @@ namespace Fin
             ib.Stretch = Stretch.None;
             ib.Viewbox = new Rect(0, 0, 36, 36);
             ib.ViewboxUnits = BrushMappingMode.Absolute;
-            //ib.ImageSource = new BitmapImage(new Uri(@"pack://application:,,,/Resource/Sprite/Sprite.png", UriKind.Absolute));
-            //hero.Fill = ib;
-            hero.Fill = Brushes.HotPink;
+            ib.ImageSource = new BitmapImage(new Uri(@"pack://application:,,,/Resource/Image/Sprite.png", UriKind.Absolute));
+            hero.Fill = ib;
+           // hero.Fill = Brushes.HotPink;
             hero.Margin = new Thickness(x, y, 0, 0);
             scene.Children.Add(hero);
             scene.Focusable = true;
-            //timer.Tick += new EventHandler(dispatcherTimer_Tick);
-            //timer.Interval = new TimeSpan(0, 0, 0, 0, 120);            
-            //timer.Start();
+            timer.Tick += new EventHandler(dispatcherTimer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 120);            
+            timer.Start();
             scene.KeyDown += new KeyEventHandler(Hero_KeyDown);
             scene.Focusable = true;
+
+
+
+
+
+
+
+            
+            SolidColorBrush mySolidColorBrush = new SolidColorBrush();
+            mySolidColorBrush.Color= Color.FromArgb(255, 255, 255, 0);
+            myEllipse.Fill= mySolidColorBrush;
+            myEllipse.StrokeThickness = 2;
+            myEllipse.Stroke = Brushes.Black;
+            myEllipse.Width = 100;
+            myEllipse.Height = 100;
+            myEllipse.Margin = new Thickness(250, 250, 0, 0);
+            scene.Children.Add(myEllipse);
+
 
         }
 
         private void Hero_KeyDown(object sender, KeyEventArgs e)
         {
+            timer.Start();
             switch (e.Key)
             {
                 case Key.Escape: MainPage.NavigationService.Navigate(new Menu()); break;
@@ -71,46 +92,62 @@ namespace Fin
                 case Key.Right: hero.RenderTransform = new TranslateTransform(x+2, y); x += 2; break;
                 case Key.Down: hero.RenderTransform = new TranslateTransform(x,y+2); y += 2; break;
                 case Key.Up: hero.RenderTransform = new TranslateTransform(x,y-2); y -= 2; break;
-                case Key.A: hero.RenderTransform = new TranslateTransform(x - 2, y); x -= 2; break;
-                case Key.D: hero.RenderTransform = new TranslateTransform(x + 2, y); x += 2; break;
-                case Key.S: hero.RenderTransform = new TranslateTransform(x, y + 2); y += 2; break;
-                case Key.W: hero.RenderTransform = new TranslateTransform(x, y - 2); y -= 2; break;
+                case Key.A: hero.RenderTransform = new TranslateTransform(x - 2, y); x -= 2; animationIndex = 1; break;
+                case Key.D:  hero.RenderTransform = new TranslateTransform(x + 2, y); x += 2; animationIndex = 2; break;
+                case Key.S: hero.RenderTransform = new TranslateTransform(x, y + 2); y += 2; animationIndex = 3; break;
+                case Key.W: hero.RenderTransform = new TranslateTransform(x, y - 2); y -= 2; animationIndex = 4; break;
 
             }
         }
 
-      
-        //private void dispatcherTimer_Tick(object sender, EventArgs e)
-        //{
-        //    //if (currentFrame == 7) currentFrame = 0;
-        //    currentFrame = (currentFrame + 1 + frameCount) % frameCount;
-        //    var frameLeft = currentFrame * frameW;
-        //    var frameTop = animationIndex * frameH;// currentRow * frameH;
-        //    (hero.Fill as ImageBrush).Viewbox = new Rect(frameLeft, frameTop, frameLeft + frameW, frameTop + frameH);
 
-        //    if (currentFrame == animations[animationIndex] - 1)
-        //    {
-                
-        //        animationIndex++;
-                
-        //        if (animationIndex == animations.Length) animationIndex = 0;
-        //        frameCount = animations[animationIndex];
-        //        currentFrame = 0;
-        //    }
-           
 
-        //}
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            Rect ellipse = myEllipse.RenderTransform.TransformBounds(myEllipse.RenderedGeometry.Bounds);
+            Rect Herorect = hero.RenderTransform.TransformBounds(hero.RenderedGeometry.Bounds);
+            if (Herorect.IntersectsWith(ellipse) == true)
+            {
+                
+            }
+            
+            currentFrame = (currentFrame + 1 + frameCount) % frameCount;
+            var frameLeft = currentFrame * frameW;
+            var frameTop = animationIndex * frameH;// currentRow * frameH;
+            (hero.Fill as ImageBrush).Viewbox = new Rect(frameLeft, frameTop, frameLeft + frameW, frameTop + frameH);
+
+
+            //if (currentFrame == animations[animationIndex] - 1)
+            //{
+            //    //currentRow++;
+            //    animationIndex++;
+            //    //if (currentRow > 20) currentRow = 0; 
+            //    if (animationIndex == animations.Length) animationIndex = 0;
+            //    frameCount = animations[animationIndex];
+            //    currentFrame = 0;
+            //}
+
+
+        }
 
 
         private void Page_KeyUp(object sender, KeyEventArgs e)
         {
+            //if (animationIndex == 1)
+            //{ animationIndex = 1; var frameTop = animationIndex * frameH;(hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop, frameW, frameTop + frameH); timer.Stop(); }
+            //if (animationIndex == 2)
+            //{ animationIndex = 2;  var frameTop = animationIndex * frameH; (hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop, frameW, frameTop + frameH); timer.Stop(); }
+            //if (animationIndex == 3)
+            //{ animationIndex = 3;  var frameTop = animationIndex * frameH; (hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop, frameW, frameTop + frameH); timer.Stop(); }
+            //if (animationIndex == 4)
+            //{ animationIndex = 4;  var frameTop = animationIndex * frameH; (hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop,  frameW, frameTop + frameH); timer.Stop(); }
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainPage.NavigationService.Navigate(new Fight());
-
         }
 
 

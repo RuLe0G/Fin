@@ -27,11 +27,13 @@ namespace Fin
         {
            
 
-            player.Open(new Uri("D://Prog//Fin//Fin//main.mp3"));
+            
             InitializeComponent();
+
+            //Музыкальная тема и переход в Menu
             player.Play();
             player.MediaEnded += player_Media_Ended;
-            frame.NavigationService.Navigate(new Menu(player));
+            frame.NavigationService.Navigate(new Menu());
             
         }
 

@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:Fin"
         mc:Ignorable="d"
         x:Name="MainPage" Title="MainWindow" Height="600" Width="800" KeyDown="Hero_KeyDown" KeyUp="Page_KeyUp">
-    <Canvas x:Name="scene" Height="600">
-        <Button Content="Button" Canvas.Left="309" Canvas.Top="338" Width="75" Click="Button_Click"/>
+    <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+        <StackPanel>
+    <Canvas x:Name="scene" Height="1000" Width="1000">
+        <Button Content="Button" Canvas.Left="397" Canvas.Top="410" Width="195" Click="Button_Click" Height="154"/>
+
     </Canvas>
+            </StackPanel>
+    </ScrollViewer>
 </Page>

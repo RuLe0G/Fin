@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Data.SQLite;
 
 namespace Fin
@@ -27,11 +28,15 @@ namespace Fin
         int damage;
         Dictionary<string, int> HpE = new Dictionary<string, int>();
         Dictionary<string, int> HpH = new Dictionary<string, int>();
-        bool turn = true;
+        DispatcherTimer Enem_Timer = new DispatcherTimer();
+        DispatcherTimer HPCh = new DispatcherTimer();
+
+        int i = 800;
+
         public Fight()
         {
             InitializeComponent();
-
+            Timer_Enem.Value = 1000;
             
 
             //dbskills = new SQLiteConnection("Data Source=D://Prog//Fin//Fin//Resource//DB//Skills.db;Version=3;");
@@ -43,11 +48,33 @@ namespace Fin
             list.Items.Add("Hero3");
 
 
+            
+            Enem_Timer.Tick += Enem_Timer_Tick;
+            Enem_Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            Enem_Timer.Start();
+
+            HPCh.Tick += HPCh_Timer_Tick;
+            HPCh.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            HPCh.Start();
+
+
+            string SQLHERO = "SELECT Name, HP FROM Heroes ";
+            SQLiteCommand command = new SQLiteCommand(SQLHERO, dbskills);
+            SQLiteDataReader reador = command.ExecuteReader();
+            while (reador.Read())
+            {
+                HpH.Add(reador["Name"].ToString(), Int32.Parse(reador["HP"].ToString()));
+            
+
+            }
+
+
+
             List_enem.Items.Add("Xorn");
             
             string sql1 = "SELECT HP FROM Enemy WHERE Enemy.Name = 'Xorn'";
-            SQLiteCommand command = new SQLiteCommand(sql1, dbskills);
-            SQLiteDataReader reader = command.ExecuteReader();
+            SQLiteCommand commando = new SQLiteCommand(sql1, dbskills);
+            SQLiteDataReader reader = commando.ExecuteReader();
             while (reader.Read())
             {
                 HpE.Add("Xorn", Int32.Parse(reader["HP"].ToString()));
@@ -64,13 +91,69 @@ namespace Fin
                 break;
 
             }
-            
 
-            
+
+            foreach (var Item in list.Items)
+            {
+                List_hl.Items.Add(Item.ToString());
+            }
 
         }
-               
-                     
+
+        private void HPCh_Timer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                HP_Hero1.Content = HpH["Hero1"]; 
+                  HP_Hero2.Content = HpH["Hero2"];  
+                 HP_Hero3.Content = HpH["Hero3"]; 
+                HP_enem1.Content = HpE["Xorn"];  
+                 HP_enem2.Content = HpE["Snake"];  
+
+            }
+            catch { }
+        }
+
+        private void Enem_Timer_Tick(object sender, EventArgs e)
+        {
+            if (i == 0)
+            {
+                Timer_Enem.Value = 800;
+                i = 800;
+                int a = random.Next(0, List_enem.Items.Count);
+                int b = random.Next(0, list.Items.Count);
+                int cuD = 0;
+                string sql = "SELECT Damage FROM Enemy WHERE Enemy.Name  = '" + List_enem.Items.GetItemAt(a).ToString() + "'";
+                SQLiteCommand command = new SQLiteCommand(sql, dbskills);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    if (List_hl.Items.Count == 0)
+                        Lose();
+                    else
+                        cuD = random.Next(int.Parse(reader["Damage"].ToString()) - 5, int.Parse(reader["Damage"].ToString()) + 5);
+                    if (HpH[List_hl.Items.GetItemAt(b).ToString()] - cuD <= 0)
+                    { HpH.Remove(List_hl.Items.GetItemAt(b).ToString()); List_hl.Items.RemoveAt(b); list.Items.RemoveAt(b); }
+                    else
+                        HpH[List_hl.Items.GetItemAt(b).ToString()] -= cuD;
+                    
+
+
+                    break;
+
+                }
+                
+            }
+            else
+            {
+                i -= 1;
+                Timer_Enem.Value -= 1;
+                
+            }
+
+
+        }
+
         private void skill_1(object sender, RoutedEventArgs e)
         {
 
@@ -82,16 +165,16 @@ namespace Fin
             {
                 
                 lb.Content = reader["Cost"].ToString();
-                damage = Int32.Parse(reader["Damage"].ToString());
+                 damage = Int32.Parse(reader["Damage"].ToString());
                 break;           
             
             }
-            if (reader["element"].ToString() != "heal")
+            if (reader["element"].ToString() == "heal")
             {
-                t_Copy.Visibility = Visibility.Hidden;
-                //Listtoheal.Visibility = Visibility.Visible;
+                
+                List_hl.Visibility = Visibility.Visible;
             }
-
+            t_Copy.Visibility = Visibility.Hidden;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -129,12 +212,14 @@ namespace Fin
 
 
 
+
                     HpE[List_enem.SelectedItem.ToString()] -= damage;
-                    HP_enem.Content = HpE[List_enem.SelectedItem.ToString()];
+
                     if (HpE[List_enem.SelectedItem.ToString()] <= 0)
                     {
                         List_enem.Items.RemoveAt(List_enem.SelectedIndex);
                         HpE.Remove(List_enem.SelectedItem.ToString());
+                       
                     };
                     List_enem.SelectedIndex = -1;
                     list.SelectedIndex = -1;
@@ -161,17 +246,59 @@ namespace Fin
             Fight_page.NavigationService.GoBack();
         }
 
-        //private void Listtoheal_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    try
-        //    {
-
-        //        MessageBox.Show("QWE");
-
+        private void Lose()
+        {
+            // Fight_page.NavigationService.Navigate(new Uri("MainWindow.xaml", UriKind.Relative));
+            Fight_page.NavigationService.GoBack();
+        }
 
 
-        //    }
-        //    catch { }
-        //}
+        private void List_hl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                int MaxHP = 0;
+                But_skill1.Content = "";
+                But_skill4.Content = "";
+                But_skill3.Content = "";
+                But_skill2.Content = "";
+                string sql = "SELECT HP FROM Heroes WHERE Heroes.Name = '" + List_hl.SelectedItem.ToString() + "'";
+                SQLiteCommand command1 = new SQLiteCommand(sql, dbskills);
+                SQLiteDataReader reader1 = command1.ExecuteReader();
+                while (reader1.Read())
+                {
+                    MaxHP = Int32.Parse(reader1["HP"].ToString());
+                    break;
+
+                }
+
+                
+
+                if ((HpH[List_hl.SelectedItem.ToString()] + damage)< MaxHP)
+                {
+                    HpH[List_hl.SelectedItem.ToString()] += damage;
+                }
+                else
+                {
+                    HpH[List_hl.SelectedItem.ToString()] = MaxHP;
+                }
+
+               
+                List_hl.SelectedIndex = -1;
+                list.SelectedIndex = -1;
+                t.Visibility = Visibility.Visible;
+                t_Copy.Visibility = Visibility.Visible;
+            }
+            catch {
+
+                list.SelectedIndex = -1;
+                List_hl.SelectedIndex = -1;
+                t.Visibility = Visibility.Visible;
+                t_Copy.Visibility = Visibility.Visible;
+                List_hl.Visibility = Visibility.Hidden;
+            }
+            }
+
+       
     }
 }

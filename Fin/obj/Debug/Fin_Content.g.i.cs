@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/db/bdmain.sql")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resource/image/%d0%91%d0%b5%d0%b7%20%d0%b8%d0%bc%d0%b5%d0%bd%d0%b8-1.jpg")]
 
 

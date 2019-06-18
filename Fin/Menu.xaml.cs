@@ -23,34 +23,36 @@ namespace Fin
     {
         int opa = 0;
         DispatcherTimer timer = new DispatcherTimer();
-        private MediaPlayer player;
+        MediaPlayer player = new MediaPlayer();
 
         public Menu()
         {
             InitializeComponent();
-           
+            //player.Source;
+            player.Play();
         }
 
-        public Menu(MediaPlayer player)
-        {
-            InitializeComponent();
-            this.player = player;
-        }
-
+       //ВЫХОД
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        //Переход в на поле
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             
             timer.Tick += dispatcherTimer_Tick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             timer.Start();
-            player.Stop();
+            try
+            {
+                player.Stop();
+            }
+            catch { }
         }
 
+        //Анимация 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             if (opa != 100)

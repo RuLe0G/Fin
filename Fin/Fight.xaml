@@ -25,8 +25,17 @@
 
         <Label x:Name="lb" Content="Label" Canvas.Left="444" Canvas.Top="292" Width="191"/>
         <ListBox x:Name="List_enem" Height="76" Canvas.Left="10" Canvas.Top="364" Width="285" Background="Black" BorderBrush="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" SelectionChanged="List_enem_SelectionChanged"/>
-        <Label x:Name="HP_enem" Content="Label" Canvas.Left="10" Canvas.Top="320" Width="143"/>
-        
+        <ListBox x:Name="List_hl" Height="76" Canvas.Left="10" Canvas.Top="364" Visibility="Hidden" Width="285" Background="Black" BorderBrush="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" SelectionChanged="List_hl_SelectionChanged"/>
+        <Label x:Name="HP_enem1" Content="Label" Canvas.Left="10" Canvas.Top="10" Width="143"/>
+        <Label x:Name="HP_enem2" Content="Label" Canvas.Left="10" Canvas.Top="35" Width="143"/>
         <Rectangle x:Name="t_Copy" Width="287" Height="78" Canvas.Left="9" Canvas.Top="363" Fill="Black" Stroke="White"/>
-        </Canvas>
+        <TextBox x:Name="Goi"  Height="23" Canvas.Left="456" TextWrapping="Wrap" Text="TextBox" Canvas.Top="226" Width="120"/>
+        <Label x:Name="HP_Hero1" Content="Label" Canvas.Left="660" Canvas.Top="10" Width="130"/>
+        <Label x:Name="HP_Hero2" Content="Label" Canvas.Left="660" Canvas.Top="35" Width="130"/>
+        <Label x:Name="HP_Hero3" Content="Label" Canvas.Left="660" Canvas.Top="61" Width="130"/>
+        <Slider x:Name="Timer_Enem" Canvas.Top="327" Height="31" Width="286" Canvas.Left="9" Maximum="800"/>
+        <Slider x:Name="Timer_Hero1" Canvas.Top="363" Height="25" Width="130" Canvas.Left="660" Maximum="800"/>
+        <Slider x:Name="Timer_Hero2" Canvas.Top="388" Height="25" Width="130" Canvas.Left="660" Maximum="800"/>
+        <Slider x:Name="Timer_Hero3" Canvas.Top="413" Height="25" Width="130" Canvas.Left="660" Maximum="800"/>
+    </Canvas>
 </Page>

@@ -7,25 +7,37 @@
       mc:Ignorable="d" 
       Title="MenuPage" Background="BlueViolet" Width="800" Height="600">
     <Canvas x:Name="Menu_Canvas">
-    <Grid Height="600" Width="800">
+        <Grid Height="600" Width="800">
+            <Grid.Background>
+                <ImageBrush ImageSource="Resource/Image/yxHXRKR.jpg"/>
+            </Grid.Background>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <Button Grid.Row="1" Content="Start" Width="230" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" Click="Button_Click_1">
-        </Button>
+            <Button Grid.Row="1" Content="Start" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Click="Button_Click_1" Foreground="White" Margin="240,10" FontFamily="Comic Sans MS">
+                <Button.Background>
+                    <ImageBrush ImageSource="Resource/Image/Button.jpg"/>
+                </Button.Background>
+            </Button>
 
-        <Button Grid.Row="2" Content="Load" Width="230" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" >
-        </Button>
+            <Button Grid.Row="2" Content="None" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Foreground="White" FontFamily="Comic Sans MS" >
+                <Button.Background>
+                    <ImageBrush ImageSource="Resource/Image/Button.jpg"/>
+                </Button.Background>
+            </Button>
 
-        <Button Grid.Row="3" Content="Exit" Width="230" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" Click="Button_Click" >
-        </Button>
-        
-    </Grid>
+            <Button Grid.Row="3" Content="Exit" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Foreground="White" Click="Button_Click" Margin="290,20" FontFamily="Comic Sans MS">
+                <Button.Background>
+                    <ImageBrush ImageSource="Resource/Image/Button.jpg"/>
+                </Button.Background>
+            </Button>
+
+        </Grid>
     </Canvas>
 </Page>
