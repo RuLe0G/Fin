@@ -1,4 +1,3 @@
-D:\Prog\Fin\Fin\obj\Debug\Fin.csprojAssemblyReference.cache
 D:\Prog\Fin\Fin\obj\Debug\MainWindow.g.cs
 D:\Prog\Fin\Fin\obj\Debug\Menu.g.cs
 D:\Prog\Fin\Fin\obj\Debug\Start.g.cs
@@ -60,3 +59,6 @@ C:\Users\Admin\Source\Repos\Fin\Fin\obj\Debug\Fin.Properties.Resources.resources
 C:\Users\Admin\Source\Repos\Fin\Fin\obj\Debug\Fin.csproj.GenerateResource.cache
 C:\Users\Admin\Source\Repos\Fin\Fin\obj\Debug\Fin.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Source\Repos\Fin\Fin\obj\Debug\Fin.csproj.CopyComplete
+D:\Prog\Fin\Fin\bin\Debug\Resource\DB\DBMain.db
+D:\Prog\Fin\Fin\bin\Debug\Resource\OST\Fight_theme.mp3
+D:\Prog\Fin\Fin\obj\Debug\Fin.csprojAssemblyReference.cache

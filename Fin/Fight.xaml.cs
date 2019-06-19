@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Data.SQLite;
 
+
 namespace Fin
 {
     /// <summary>
@@ -22,6 +23,9 @@ namespace Fin
     /// </summary>
     public partial class Fight : Page
     {
+        MediaPlayer player = new MediaPlayer();
+
+
         Random random = new Random();
         SQLiteConnection dbskills;
         //int[] HpE = new int[4];
@@ -30,6 +34,9 @@ namespace Fin
         Dictionary<string, int> HpH = new Dictionary<string, int>();
         DispatcherTimer Enem_Timer = new DispatcherTimer();
         DispatcherTimer HPCh = new DispatcherTimer();
+        DispatcherTimer Hero_Timer = new DispatcherTimer();
+        int[] bl = new int[3];
+
 
         int i = 800;
 
@@ -37,10 +44,17 @@ namespace Fin
         {
             InitializeComponent();
             Timer_Enem.Value = 1000;
-            
 
-            //dbskills = new SQLiteConnection("Data Source=D://Prog//Fin//Fin//Resource//DB//Skills.db;Version=3;");
-            dbskills = new SQLiteConnection("Data Source=C://Users//Admin//Source//Repos//Fin//Fin//Resource//DB//DBMain.db;Version=3;");
+            player.Open(new Uri(@"\Resource\OST\Fight_theme.mp3", UriKind.Relative));
+            //player.Open(new Uri("D://Prog//Fin//Fin//Resource//OST//Fight_theme.mp3", UriKind.Absolute));
+            player.Volume = 100;
+            player.Play();
+            player.MediaEnded += player_Media_Ended;
+
+           
+
+            dbskills = new SQLiteConnection("Data Source="+ System.AppDomain.CurrentDomain.BaseDirectory + "\\Resource\\DB\\DBMain.db;Version=3;");
+            //dbskills = new SQLiteConnection("Data Source=C://Users//Admin//Source//Repos//Fin//Fin//Resource//DB//DBMain.db;Version=3;");
             dbskills.Open();
 
             ListBoxItem l1 = new ListBoxItem();
@@ -60,6 +74,12 @@ namespace Fin
             Enem_Timer.Tick += Enem_Timer_Tick;
             Enem_Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             Enem_Timer.Start();
+
+            Hero_Timer.Tick += Hero_Timer_Tick;
+            Hero_Timer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            Hero_Timer.Start();
+
+
 
             HPCh.Tick += HPCh_Timer_Tick;
             HPCh.Interval = new TimeSpan(0, 0, 0, 0, 10);
@@ -110,6 +130,34 @@ namespace Fin
 
         }
 
+
+        private void player_Media_Ended(object sender, EventArgs e)
+        {
+            player.Stop();
+            player.Play();
+        }
+
+        private void Hero_Timer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (bl[i] > 0)
+                    {
+                        bl[i]--;
+                    }
+                    else
+                    {
+                        ((ListBoxItem)list.Items[i]).IsEnabled = true;
+                    }
+
+                }
+            }
+            catch { }
+        }
+
+       
         private void HPCh_Timer_Tick(object sender, EventArgs e)
         {
             try
@@ -128,31 +176,40 @@ namespace Fin
         {
             if (i == 0)
             {
-                Timer_Enem.Value = 800;
-                i = 800;
-                int a = random.Next(0, List_enem.Items.Count);
-                int b = random.Next(0, list.Items.Count);
-                int cuD = 0;
-                string sql = "SELECT Damage FROM Enemy WHERE Enemy.Name  = '" + List_enem.Items.GetItemAt(a).ToString() + "'";
-                SQLiteCommand command = new SQLiteCommand(sql, dbskills);
-                SQLiteDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                int a;
+                int b;
+                try
                 {
-                    if (List_hl.Items.Count == 0)
-                        Lose();
-                    else
-                        cuD = random.Next(int.Parse(reader["Damage"].ToString()) - 5, int.Parse(reader["Damage"].ToString()) + 5);
-                    if (HpH[List_hl.Items.GetItemAt(b).ToString()] - cuD <= 0)
-                    { HpH.Remove(List_hl.Items.GetItemAt(b).ToString()); List_hl.Items.RemoveAt(b); list.Items.RemoveAt(b); }
-                    else
-                        HpH[List_hl.Items.GetItemAt(b).ToString()] -= cuD;
-                    
+                    Timer_Enem.Value = 800;
+                    i = 800;
+                    a = random.Next(0, List_enem.Items.Count);
+                    b = random.Next(0, list.Items.Count);
+                    int cuD = 0;
+                    string sql = "SELECT Damage FROM Enemy WHERE Enemy.Name  = '" + List_enem.Items.GetItemAt(a).ToString() + "'";
+                    SQLiteCommand command = new SQLiteCommand(sql, dbskills);
+                    SQLiteDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (List_hl.Items.Count == 0)
+                            Lose();
+                        else
+                            cuD = random.Next(int.Parse(reader["Damage"].ToString()) - 5, int.Parse(reader["Damage"].ToString()) + 5);
+                        if (HpH[List_hl.Items.GetItemAt(b).ToString()] - cuD <= 0)
+                        { HpH.Remove(List_hl.Items.GetItemAt(b).ToString()); List_hl.Items.RemoveAt(b); list.Items.RemoveAt(b); }
+                        else
+                            HpH[List_hl.Items.GetItemAt(b).ToString()] -= cuD;
 
 
-                    break;
 
+                        break;
+
+                    }
                 }
-                
+                catch
+                {
+                    a = -1;
+                    b = -1;
+                }
             }
             else
             {
@@ -188,8 +245,8 @@ namespace Fin
 
           //  MessageBox.Show(list.Items[list.SelectedIndex].ToString());
 
-          (  (ListBoxItem)(list.Items[list.SelectedIndex])).IsEnabled = false; 
-            //lbi
+          (  (ListBoxItem)(list.Items[list.SelectedIndex])).IsEnabled = false;
+            bl[list.SelectedIndex]  = 300;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

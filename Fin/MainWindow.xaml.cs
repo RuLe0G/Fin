@@ -30,11 +30,12 @@ namespace Fin
         int currentFrame = 10;
         int[] animations = new int[] { 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28};
         int animationIndex = 1;
-
+        Rectangle[] recArray = new Rectangle[100];
         int frameCount = 27;
         double frameW = 36;
         double frameH = 36;
 
+        Random Random = new Random();
         
         public MainWindow()
         {
@@ -53,7 +54,7 @@ namespace Fin
             ib.ImageSource = new BitmapImage(new Uri(@"pack://application:,,,/Resource/Image/Sprite.png", UriKind.Absolute));
             hero.Fill = ib;
            // hero.Fill = Brushes.HotPink;
-            hero.Margin = new Thickness(x, y, 0, 0);
+            hero.RenderTransform = new TranslateTransform(x, y);
             scene.Children.Add(hero);
             scene.Focusable = true;
             timer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -64,11 +65,6 @@ namespace Fin
 
 
 
-
-
-
-
-            
             SolidColorBrush mySolidColorBrush = new SolidColorBrush();
             mySolidColorBrush.Color= Color.FromArgb(255, 255, 255, 0);
             myEllipse.Fill= mySolidColorBrush;
@@ -86,6 +82,20 @@ namespace Fin
 
         private void Hero_KeyDown(object sender, KeyEventArgs e)
         {
+            Rect ellipse = myEllipse.RenderTransform.TransformBounds(myEllipse.RenderedGeometry.Bounds);
+            Rect Herorect = hero.RenderTransform.TransformBounds(hero.RenderedGeometry.Bounds);
+
+            if (Herorect.IntersectsWith(ellipse) == true)
+            {
+                try
+                {
+                    int r = Random.Next(0, 100);
+                    if (r <= 1) MainPage.NavigationService.Navigate(new Fight());
+                }
+                catch { }
+            }
+
+
             timer.Start();
             switch (e.Key)
             {
@@ -95,7 +105,7 @@ namespace Fin
                 case Key.Down: hero.RenderTransform = new TranslateTransform(x,y+2); y += 2; break;
                 case Key.Up: hero.RenderTransform = new TranslateTransform(x,y-2); y -= 2; break;
                 case Key.A: hero.RenderTransform = new TranslateTransform(x - 2, y); x -= 2; animationIndex = 1; break;
-                case Key.D:  hero.RenderTransform = new TranslateTransform(x + 2, y); x += 2; animationIndex = 2; break;
+                case Key.D:  hero.RenderTransform = new TranslateTransform(x + 2, y); x += 2; MainPage.Margin = new Thickness(MainPage.Margin.Left - 2, MainPage.Margin.Top, MainPage.Margin.Right + 2, MainPage.Margin.Bottom);  animationIndex = 2; break;
                 case Key.S: hero.RenderTransform = new TranslateTransform(x, y + 2); y += 2; animationIndex = 3; break;
                 case Key.W: hero.RenderTransform = new TranslateTransform(x, y - 2); y -= 2; animationIndex = 4; break;
 
@@ -107,12 +117,7 @@ namespace Fin
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            Rect ellipse = myEllipse.RenderTransform.TransformBounds(myEllipse.RenderedGeometry.Bounds);
-            Rect Herorect = hero.RenderTransform.TransformBounds(hero.RenderedGeometry.Bounds);
-            if (Herorect.IntersectsWith(ellipse) == true)
-            {
-                
-            }
+            
             
             currentFrame = (currentFrame + 1 + frameCount) % frameCount;
             var frameLeft = currentFrame * frameW;
@@ -136,14 +141,15 @@ namespace Fin
 
         private void Page_KeyUp(object sender, KeyEventArgs e)
         {
-            //if (animationIndex == 1)
-            //{ animationIndex = 1; var frameTop = animationIndex * frameH;(hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop, frameW, frameTop + frameH); timer.Stop(); }
-            //if (animationIndex == 2)
-            //{ animationIndex = 2;  var frameTop = animationIndex * frameH; (hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop, frameW, frameTop + frameH); timer.Stop(); }
-            //if (animationIndex == 3)
-            //{ animationIndex = 3;  var frameTop = animationIndex * frameH; (hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop, frameW, frameTop + frameH); timer.Stop(); }
-            //if (animationIndex == 4)
-            //{ animationIndex = 4;  var frameTop = animationIndex * frameH; (hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop,  frameW, frameTop + frameH); timer.Stop(); }
+
+            if (animationIndex == 1)
+            { animationIndex = 1; var frameTop = animationIndex * frameH; (hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop, frameW, frameTop + frameH); timer.Stop(); }
+            if (animationIndex == 2)
+            { animationIndex = 2; var frameTop = animationIndex * frameH; (hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop, frameW, frameTop + frameH); timer.Stop(); }
+            if (animationIndex == 3)
+            { animationIndex = 3; var frameTop = animationIndex * frameH; (hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop, frameW, frameTop + frameH); timer.Stop(); }
+            if (animationIndex == 4)
+            { animationIndex = 4; var frameTop = animationIndex * frameH; (hero.Fill as ImageBrush).Viewbox = new Rect(0, frameTop, frameW, frameTop + frameH); timer.Stop(); }
 
         }
 

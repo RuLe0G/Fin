@@ -8,10 +8,20 @@
         x:Name="MainPage" Title="MainWindow" Height="600" Width="800" KeyDown="Hero_KeyDown" KeyUp="Page_KeyUp">
     <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
         <StackPanel>
-    <Canvas x:Name="scene" Height="1000" Width="1000">
-        <Button Content="Button" Canvas.Left="397" Canvas.Top="410" Width="195" Click="Button_Click" Height="154"/>
-
-    </Canvas>
-            </StackPanel>
+            <Canvas x:Name="scene" Height="1000" Width="1000">
+                <Button Content="Button" Canvas.Left="629" Canvas.Top="472" Width="169" Click="Button_Click" Height="125"/>
+                <Rectangle Width="150" Height="362" Canvas.Left="400" Fill="Black"/>
+                <Rectangle Width="142" Height="408" Canvas.Left="130" Fill="Black" Canvas.Top="326" RenderTransformOrigin="0.5,0.5">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-90.048"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </Canvas>
+        </StackPanel>
     </ScrollViewer>
 </Page>
