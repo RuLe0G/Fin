@@ -64,7 +64,8 @@ namespace Fin
             scene.Focusable = true;
             Enemy_zone1.RenderTransform = new TranslateTransform(419, 56);
             Enemy_zone2.RenderTransform = new TranslateTransform(1010, 183);
-
+            floor_is_lava.RenderTransform = new TranslateTransform(1791, 10);
+            
 
             //SolidColorBrush mySolidColorBrush = new SolidColorBrush();
             //mySolidColorBrush.Color= Color.FromArgb(255, 255, 255, 0);
@@ -82,7 +83,8 @@ namespace Fin
         }
 
         private void Hero_KeyDown(object sender, KeyEventArgs e)
-        {            
+        {
+            Rect LAVA = floor_is_lava.RenderTransform.TransformBounds(floor_is_lava.RenderedGeometry.Bounds);
             Rect Enemy_zonee1 = Enemy_zone1.RenderTransform.TransformBounds(Enemy_zone1.RenderedGeometry.Bounds);
             Rect Enemy_zonee2 = Enemy_zone2.RenderTransform.TransformBounds(Enemy_zone2.RenderedGeometry.Bounds);
             Rect Herorect = hero.RenderTransform.TransformBounds(hero.RenderedGeometry.Bounds);
@@ -92,8 +94,8 @@ namespace Fin
             {
                 try
                 {
-                    int r = Random.Next(0, 1000);
-                    if (r == 1) MainPage.NavigationService.Navigate(new Fight());
+                    int r = Random.Next(0, 500);
+                    if (r == 1) MainPage.NavigationService.Navigate(new Fight("Snake"));
                 }
                 catch { }
             }
@@ -101,9 +103,18 @@ namespace Fin
             {
                 try
                 {
-                    int r = Random.Next(0, 800);
+                    int r = Random.Next(0, 600);
                     if (r <= 1)
-                        MainPage.NavigationService.Navigate(new Fight());
+                        MainPage.NavigationService.Navigate(new Fight("Xorn"));
+                }
+                catch { }
+            }
+            if (Herorect.IntersectsWith(LAVA) == true)
+            {
+                try
+                {
+                    
+                        MainPage.NavigationService.Navigate(new GG("hehe"));
                 }
                 catch { }
             }
@@ -172,7 +183,7 @@ namespace Fin
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.NavigationService.Navigate(new Fight());
+            MainPage.NavigationService.Navigate(new Fight("Xorn"));
         }
 
 

@@ -36,13 +36,15 @@ namespace Fin
         DispatcherTimer HPCh = new DispatcherTimer();
         DispatcherTimer Hero_Timer = new DispatcherTimer();
         int[] bl = new int[3];
-        string Enem_Name = "Xorn";
+        string Enem_Name;
+        //string Enem_Name = "Xorn";
 
 
         int i = 800;
 
-        public Fight()
+        public Fight(string hoho)
         {
+            Enem_Name = hoho;
             InitializeComponent();
             Timer_Enem.Value = 1000;
 
@@ -99,18 +101,23 @@ namespace Fin
 
 
             //text = text.Substring(0, text.Length - 2);
-
-            for (int f = 0; f < random.Next(1, 4); f++)
+            int ff = random.Next(1, 4);
+            for (int f = 0; f < ff; f++)
             {
                 List_enem.Items.Add(Enem_Name +  f.ToString());
 
             }
-            string sql1 = "SELECT HP FROM Enemy WHERE Enemy.Name = '" + Enem_Name.Substring(0, Enem_Name.Length - 1) + "'";
+            string sql1 = "SELECT HP FROM Enemy WHERE Enemy.Name = '" + Enem_Name + "'";
             SQLiteCommand commando = new SQLiteCommand(sql1, dbskills);
             SQLiteDataReader reader = commando.ExecuteReader();
             while (reader.Read())
             {
-                HpE.Add(Enem_Name.Substring(0, Enem_Name.Length - 1), Int32.Parse(reader["HP"].ToString()));
+                foreach (var Item in List_enem.Items)
+                {
+                    string str = Item.ToString();
+                    HpE.Add(str, Int32.Parse(reader["HP"].ToString()));
+                }
+                //HpE.Add(Enem_Name.Substring(0, Enem_Name.Length - 1), Int32.Parse(reader["HP"].ToString()));
                 break;
 
             }
@@ -334,10 +341,10 @@ namespace Fin
         {
             // Fight_page.NavigationService.Navigate(new Uri("MainWindow.xaml", UriKind.Relative));
 
-            Fight_page.NavigationService.Navigate(new Menu());
+            Fight_page.NavigationService.Navigate(new GG("gg ez"));
         }
 
-
+        
         private void List_hl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try

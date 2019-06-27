@@ -20,19 +20,19 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="1" Content="Start" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Click="Button_Click_1" Foreground="White" Margin="240,10" FontFamily="Comic Sans MS">
+            <Button Grid.Row="1" Content="Начать" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Click="Button_Click_1" Foreground="White" Margin="240,10" FontFamily="Comic Sans MS">
                 <Button.Background>
                     <ImageBrush ImageSource="Resource/Image/Button.jpg"/>
                 </Button.Background>
             </Button>
 
-            <Button Grid.Row="2" Content="None" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Foreground="White" FontFamily="Comic Sans MS" >
+            <Button Grid.Row="2" Content="Не нажимай" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Foreground="White" FontFamily="Comic Sans MS" Click="Button_Click_2" >
                 <Button.Background>
                     <ImageBrush ImageSource="Resource/Image/Button.jpg"/>
                 </Button.Background>
             </Button>
 
-            <Button Grid.Row="3" Content="Exit" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Foreground="White" Click="Button_Click" Margin="290,20" FontFamily="Comic Sans MS">
+            <Button Grid.Row="3" Content="Выход" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Foreground="White" Click="Button_Click" Margin="290,20" FontFamily="Comic Sans MS">
                 <Button.Background>
                     <ImageBrush ImageSource="Resource/Image/Button.jpg"/>
                 </Button.Background>

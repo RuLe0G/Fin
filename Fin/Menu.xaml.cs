@@ -68,7 +68,10 @@ namespace Fin
             opa += 1;
         }
 
-        
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MenuPage.NavigationService.Navigate(new GG("stupid end"));
+        }
     }
 }
 
