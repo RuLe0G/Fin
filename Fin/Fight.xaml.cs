@@ -36,6 +36,7 @@ namespace Fin
         DispatcherTimer HPCh = new DispatcherTimer();
         DispatcherTimer Hero_Timer = new DispatcherTimer();
         int[] bl = new int[3];
+        string Enem_Name = "Xorn";
 
 
         int i = 800;
@@ -45,9 +46,9 @@ namespace Fin
             InitializeComponent();
             Timer_Enem.Value = 1000;
 
-            player.Open(new Uri(@"\Resource\OST\Fight_theme.mp3", UriKind.Relative));
+            //player.Open(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + "\\Resource\\OST\\Fight_theme.mp3", UriKind.Relative));
             //player.Open(new Uri("D://Prog//Fin//Fin//Resource//OST//Fight_theme.mp3", UriKind.Absolute));
-            player.Volume = 100;
+            player.Volume = 0.10;
             player.Play();
             player.MediaEnded += player_Media_Ended;
 
@@ -58,7 +59,7 @@ namespace Fin
             dbskills.Open();
 
             ListBoxItem l1 = new ListBoxItem();
-            l1.Content = "Hero1";
+            l1.Content = "Hero1"; 
             ListBoxItem l2 = new ListBoxItem();
             l2.Content = "Hero2";
             ListBoxItem l3 = new ListBoxItem();
@@ -97,28 +98,33 @@ namespace Fin
             }
 
 
+            //text = text.Substring(0, text.Length - 2);
 
-            List_enem.Items.Add("Xorn");
-            
-            string sql1 = "SELECT HP FROM Enemy WHERE Enemy.Name = 'Xorn'";
+            for (int f = 0; f < random.Next(1, 4); f++)
+            {
+                List_enem.Items.Add(Enem_Name +  f.ToString());
+
+            }
+            string sql1 = "SELECT HP FROM Enemy WHERE Enemy.Name = '" + Enem_Name.Substring(0, Enem_Name.Length - 1) + "'";
             SQLiteCommand commando = new SQLiteCommand(sql1, dbskills);
             SQLiteDataReader reader = commando.ExecuteReader();
             while (reader.Read())
             {
-                HpE.Add("Xorn", Int32.Parse(reader["HP"].ToString()));
+                HpE.Add(Enem_Name.Substring(0, Enem_Name.Length - 1), Int32.Parse(reader["HP"].ToString()));
                 break;
 
             }
-            List_enem.Items.Add("Snake");
-            string sql = "SELECT HP FROM Enemy WHERE Enemy.Name = 'Snake'";
-            SQLiteCommand command1 = new SQLiteCommand(sql, dbskills);
-            SQLiteDataReader reader1 = command1.ExecuteReader();
-            while (reader1.Read())
-            {
-                HpE.Add("Snake", Int32.Parse(reader1["HP"].ToString()));
-                break;
 
-            }
+            //List_enem.Items.Add("Snake");
+            //string sql = "SELECT HP FROM Enemy WHERE Enemy.Name = 'Snake'";
+            //SQLiteCommand command1 = new SQLiteCommand(sql, dbskills);
+            //SQLiteDataReader reader1 = command1.ExecuteReader();
+            //while (reader1.Read())
+            //{
+            //    HpE.Add("Snake", Int32.Parse(reader1["HP"].ToString()));
+            //    break;
+
+            //}
 
 
             foreach (var Item in list.Items)
@@ -185,7 +191,7 @@ namespace Fin
                     a = random.Next(0, List_enem.Items.Count);
                     b = random.Next(0, list.Items.Count);
                     int cuD = 0;
-                    string sql = "SELECT Damage FROM Enemy WHERE Enemy.Name  = '" + List_enem.Items.GetItemAt(a).ToString() + "'";
+                    string sql = "SELECT Damage FROM Enemy WHERE Enemy.Name  = '" + List_enem.Items.GetItemAt(a).ToString().Substring(0, Enem_Name.Length - 1)+ "'";
                     SQLiteCommand command = new SQLiteCommand(sql, dbskills);
                     SQLiteDataReader reader = command.ExecuteReader();
                     while (reader.Read())
@@ -245,8 +251,7 @@ namespace Fin
 
           //  MessageBox.Show(list.Items[list.SelectedIndex].ToString());
 
-          (  (ListBoxItem)(list.Items[list.SelectedIndex])).IsEnabled = false;
-            bl[list.SelectedIndex]  = 300;
+          
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -276,10 +281,14 @@ namespace Fin
 
         private void List_enem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ((ListBoxItem)(list.Items[list.SelectedIndex])).IsEnabled = false;
+            bl[list.SelectedIndex] = 300;
+
             if (List_enem.Items.Count != 0)
                 try
                 {
-                    
+
+                   
                     But_skill1.Content = "";
                     But_skill4.Content = "";
                     But_skill3.Content = "";

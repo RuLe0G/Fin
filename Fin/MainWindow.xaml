@@ -5,23 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fin"
         mc:Ignorable="d"
-        x:Name="MainPage" Title="MainWindow" Height="600" Width="800" KeyDown="Hero_KeyDown" KeyUp="Page_KeyUp">
-    <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
-        <StackPanel>
-            <Canvas x:Name="scene" Height="1000" Width="1000">
-                <Button Content="Button" Canvas.Left="629" Canvas.Top="472" Width="169" Click="Button_Click" Height="125"/>
-                <Rectangle Width="150" Height="362" Canvas.Left="400" Fill="Black"/>
-                <Rectangle Width="142" Height="408" Canvas.Left="130" Fill="Black" Canvas.Top="326" RenderTransformOrigin="0.5,0.5">
-                    <Rectangle.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="-90.048"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Rectangle.RenderTransform>
-                </Rectangle>
+        x:Name="MainPage" Title="MainWindow" Height="600" Width="1838" KeyDown="Hero_KeyDown" KeyUp="Page_KeyUp">
+    <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"  Width="800" HorizontalAlignment="Left">
+        <StackPanel Height="600" Width="1838">
+
+            <Canvas x:Name="scene" Height="600" Width="1838">
+                <Image Height="600" Source="Map.png" Stretch="Fill" Width="1838"/>
+                <Button Content="Button" Canvas.Left="419" Canvas.Top="472" Width="169" Click="Button_Click" Height="125"/>
+                <Rectangle x:Name="DeepDarkHole"  Width="43" Height="597" />
+                <Rectangle x:Name="Enemy_zone1" Width="169" Height="208" Canvas.Left="419" Canvas.Top="56" />
+                <Rectangle x:Name="Enemy_zone2" Width="420" Height="191" Canvas.Left="1010" Canvas.Top="183" />
             </Canvas>
+
         </StackPanel>
+
     </ScrollViewer>
 </Page>

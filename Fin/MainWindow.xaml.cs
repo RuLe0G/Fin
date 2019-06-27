@@ -23,15 +23,15 @@ namespace Fin
     {
 
         int x = 100;
-        int y = 100;
+        int y = 120;
         Rectangle hero = new Rectangle();
-        Ellipse myEllipse = new Ellipse();
+        //Ellipse myEllipse = new Ellipse();
         DispatcherTimer timer = new DispatcherTimer();
         int currentFrame = 10;
-        int[] animations = new int[] { 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28};
+        int[] animations = new int[] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
         int animationIndex = 1;
         Rectangle[] recArray = new Rectangle[100];
-        int frameCount = 27;
+        int frameCount = 2;
         double frameW = 36;
         double frameH = 36;
 
@@ -62,52 +62,69 @@ namespace Fin
             timer.Start();
             scene.KeyDown += new KeyEventHandler(Hero_KeyDown);
             scene.Focusable = true;
+            Enemy_zone1.RenderTransform = new TranslateTransform(419, 56);
+            Enemy_zone2.RenderTransform = new TranslateTransform(1010, 183);
 
 
+            //SolidColorBrush mySolidColorBrush = new SolidColorBrush();
+            //mySolidColorBrush.Color= Color.FromArgb(255, 255, 255, 0);
+            //myEllipse.Fill= mySolidColorBrush;
+            //myEllipse.StrokeThickness = 2;
+            //myEllipse.Stroke = Brushes.Black;
+            //myEllipse.Width = 100;
+            //myEllipse.Height = 100;
+            ////myEllipse.Margin = new Thickness(250, 250, 0, 0);
+            //myEllipse.RenderTransform = new TranslateTransform(250, 250);
 
-            SolidColorBrush mySolidColorBrush = new SolidColorBrush();
-            mySolidColorBrush.Color= Color.FromArgb(255, 255, 255, 0);
-            myEllipse.Fill= mySolidColorBrush;
-            myEllipse.StrokeThickness = 2;
-            myEllipse.Stroke = Brushes.Black;
-            myEllipse.Width = 100;
-            myEllipse.Height = 100;
-            //myEllipse.Margin = new Thickness(250, 250, 0, 0);
-            myEllipse.RenderTransform = new TranslateTransform(250, 250);
-
-            scene.Children.Add(myEllipse);
+            //scene.Children.Add(myEllipse);
 
 
         }
 
         private void Hero_KeyDown(object sender, KeyEventArgs e)
-        {
-            Rect ellipse = myEllipse.RenderTransform.TransformBounds(myEllipse.RenderedGeometry.Bounds);
+        {            
+            Rect Enemy_zonee1 = Enemy_zone1.RenderTransform.TransformBounds(Enemy_zone1.RenderedGeometry.Bounds);
+            Rect Enemy_zonee2 = Enemy_zone2.RenderTransform.TransformBounds(Enemy_zone2.RenderedGeometry.Bounds);
             Rect Herorect = hero.RenderTransform.TransformBounds(hero.RenderedGeometry.Bounds);
-
-            if (Herorect.IntersectsWith(ellipse) == true)
+            Rect Deep = DeepDarkHole.RenderTransform.TransformBounds(DeepDarkHole.RenderedGeometry.Bounds);
+            Scroll.ScrollToHorizontalOffset((Herorect.Left - 100)/1.5);
+            if (Herorect.IntersectsWith(Enemy_zonee1) == true)
             {
                 try
                 {
-                    int r = Random.Next(0, 100);
-                    if (r <= 1) MainPage.NavigationService.Navigate(new Fight());
+                    int r = Random.Next(0, 1000);
+                    if (r == 1) MainPage.NavigationService.Navigate(new Fight());
                 }
                 catch { }
             }
+            if (Herorect.IntersectsWith(Enemy_zonee2) == true)
+            {
+                try
+                {
+                    int r = Random.Next(0, 800);
+                    if (r <= 1)
+                        MainPage.NavigationService.Navigate(new Fight());
+                }
+                catch { }
+            }
+            if (Herorect.IntersectsWith(Deep) == true)
+            {
+                
+            }
 
 
-            timer.Start();
+                timer.Start();
             switch (e.Key)
             {
                 case Key.Escape: MainPage.NavigationService.Navigate(new Menu()); break;
                 case Key.Left: hero.RenderTransform = new TranslateTransform(x-2, y); x -= 2; break;
-                case Key.Right: hero.RenderTransform = new TranslateTransform(x+2, y); x += 2; break;
+                case Key.Right: hero.RenderTransform = new TranslateTransform(x+2, y); x += 2; break; 
                 case Key.Down: hero.RenderTransform = new TranslateTransform(x,y+2); y += 2; break;
                 case Key.Up: hero.RenderTransform = new TranslateTransform(x,y-2); y -= 2; break;
-                case Key.A: hero.RenderTransform = new TranslateTransform(x - 2, y); x -= 2; animationIndex = 1; break;
-                case Key.D:  hero.RenderTransform = new TranslateTransform(x + 2, y); x += 2; MainPage.Margin = new Thickness(MainPage.Margin.Left - 2, MainPage.Margin.Top, MainPage.Margin.Right + 2, MainPage.Margin.Bottom);  animationIndex = 2; break;
-                case Key.S: hero.RenderTransform = new TranslateTransform(x, y + 2); y += 2; animationIndex = 3; break;
-                case Key.W: hero.RenderTransform = new TranslateTransform(x, y - 2); y -= 2; animationIndex = 4; break;
+                case Key.A: hero.RenderTransform = new TranslateTransform(x - 2, y); x -= 2;   animationIndex = 4; break;
+                case Key.D:  hero.RenderTransform = new TranslateTransform(x + 2, y); x += 2; animationIndex = 3; break;
+                case Key.S: hero.RenderTransform = new TranslateTransform(x, y + 2); y += 2; animationIndex = 1; break;
+                case Key.W: hero.RenderTransform = new TranslateTransform(x, y - 2); y -= 2; animationIndex = 2; break;
 
             }
         }

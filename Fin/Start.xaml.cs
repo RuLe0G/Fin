@@ -31,6 +31,7 @@ namespace Fin
             InitializeComponent();
 
             //Музыкальная тема и переход в Menu
+            player.Open(new Uri(@"\Resource\OST\Main_theme.mp3", UriKind.Relative));
             player.Play();
             player.MediaEnded += player_Media_Ended;
             frame.NavigationService.Navigate(new Menu());
