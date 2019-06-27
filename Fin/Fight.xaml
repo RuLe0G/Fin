@@ -9,29 +9,29 @@
       Title="Fight">
 
     <Canvas>
-        <Rectangle Height ="100" Width="800" Canvas.Top="463" Fill="Black" Stroke ="Black" Canvas.Left="1"/>
+        <Rectangle Height ="100" Width="789" Canvas.Top="463" Fill="Black" Stroke ="Black" Canvas.Left="1"/>
 
 
-        <ListBox x:Name="list" Height="76" Canvas.Left="516" Canvas.Top="476" Width="275" Background="Black" BorderBrush="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListBox_SelectionChanged" Foreground="White">
+        <ListBox x:Name="list" Height="76" Canvas.Left="509" Canvas.Top="476" Width="272" Background="Black" BorderBrush="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListBox_SelectionChanged" Foreground="White">
 
         </ListBox>
-        <Rectangle Height="75" Width="210" Canvas.Left="301" Canvas.Top="477" />
+        <Rectangle Height="75" Width="207" Canvas.Left="297" Canvas.Top="477" />
 
-        <Button x:Name="But_skill1" Content="" Canvas.Left="301" Canvas.Top="476" Width="100" Height="36" Background="Black" BorderBrush="White" Foreground="White" Click="skill_1"/>
-        <Button x:Name="But_skill2" Content="" Canvas.Left="411" Canvas.Top="476" Width="100" Height="36" Background="Black" BorderBrush="White" Foreground="White" Click="skill_1"/>
-        <Button x:Name="But_skill3" Content="" Canvas.Left="411" Canvas.Top="517" Width="100" Height="36" Background="Black" BorderBrush="White" Foreground="White" Click="skill_1"/>
-        <Button x:Name="But_skill4" Content="" Canvas.Left="301" Canvas.Top="517" Width="100" Height="36" Background="Black" BorderBrush="White" Foreground="White" Click="skill_1"/>
-        <Rectangle x:Name="t" Width="212" Height="79" Canvas.Left="300" Canvas.Top="474" Fill="Black" Stroke="White"/>
+        <Button x:Name="But_skill1" Content="" Canvas.Left="297" Canvas.Top="476" Width="99" Height="36" Background="Black" BorderBrush="White" Foreground="White" Click="skill_1"/>
+        <Button x:Name="But_skill2" Content="" Canvas.Left="406" Canvas.Top="476" Width="99" Height="36" Background="Black" BorderBrush="White" Foreground="White" Click="skill_1"/>
+        <Button x:Name="But_skill3" Content="" Canvas.Left="406" Canvas.Top="517" Width="99" Height="36" Background="Black" BorderBrush="White" Foreground="White" Click="skill_1"/>
+        <Button x:Name="But_skill4" Content="" Canvas.Left="297" Canvas.Top="517" Width="99" Height="36" Background="Black" BorderBrush="White" Foreground="White" Click="skill_1"/>
+        <Rectangle x:Name="t" Width="209" Height="79" Canvas.Left="296" Canvas.Top="474" Fill="Black" Stroke="White"/>
 
         <Label x:Name="lb" Content="Label" Canvas.Left="444" Canvas.Top="292" Width="191"/>
-        <ListBox x:Name="List_enem" Height="76" Canvas.Left="11" Canvas.Top="477" Width="285" Background="Black" BorderBrush="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" SelectionChanged="List_enem_SelectionChanged"/>
-        <ListBox x:Name="List_hl" Height="76" Canvas.Left="10" Canvas.Top="364" Visibility="Hidden" Width="285" Background="Black" BorderBrush="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" SelectionChanged="List_hl_SelectionChanged"/>
+        <ListBox x:Name="List_enem" Height="76" Canvas.Left="11" Canvas.Top="477" Width="281" Background="Black" BorderBrush="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" SelectionChanged="List_enem_SelectionChanged"/>
+        <ListBox x:Name="List_hl" Height="76" Canvas.Left="10" Canvas.Top="476" Visibility="Hidden" Width="285" Background="Black" BorderBrush="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" SelectionChanged="List_hl_SelectionChanged"/>
         <Label x:Name="HP_enem1" Content="Label" Canvas.Left="10" Canvas.Top="10" Width="143"/>
         <Label x:Name="HP_enem2" Content="Label" Canvas.Left="10" Canvas.Top="35" Width="143"/>
-        <Rectangle x:Name="t_Copy" Width="287" Height="78" Canvas.Left="10" Canvas.Top="476" Fill="Black" Stroke="White"/>
+        <Rectangle x:Name="t_Copy" Width="283" Height="78" Canvas.Left="9" Canvas.Top="474" Fill="Black" Stroke="White"/>
         <Label x:Name="HP_Hero1" Content="Label" Canvas.Left="660" Canvas.Top="10" Width="130"/>
         <Label x:Name="HP_Hero2" Content="Label" Canvas.Left="660" Canvas.Top="35" Width="130"/>
         <Label x:Name="HP_Hero3" Content="Label" Canvas.Left="660" Canvas.Top="61" Width="130"/>
-        <Slider x:Name="Timer_Enem" Canvas.Top="440" Height="31" Width="286" Canvas.Left="10" Maximum="800" IsEnabled="False"/>
+        <Slider x:Name="Timer_Enem" Canvas.Top="440" Height="31" Width="282" Canvas.Left="10" Maximum="200" IsEnabled="False"/>
     </Canvas>
 </Page>

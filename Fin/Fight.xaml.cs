@@ -40,7 +40,7 @@ namespace Fin
         //string Enem_Name = "Xorn";
 
 
-        int i = 800;
+        int i = 200;
 
         public Fight(string hoho)
         {
@@ -194,11 +194,11 @@ namespace Fin
                 try
                 {
                     Timer_Enem.Value = 800;
-                    i = 800;
+                    i = 200;
                     a = random.Next(0, List_enem.Items.Count);
                     b = random.Next(0, list.Items.Count);
                     int cuD = 0;
-                    string sql = "SELECT Damage FROM Enemy WHERE Enemy.Name  = '" + List_enem.Items.GetItemAt(a).ToString().Substring(0, Enem_Name.Length - 1)+ "'";
+                    string sql = "SELECT Damage FROM Enemy WHERE Enemy.Name  = '" + List_enem.Items.GetItemAt(a).ToString().Substring(0, Enem_Name.Length - 0)+ "'";
                     SQLiteCommand command = new SQLiteCommand(sql, dbskills);
                     SQLiteDataReader reader = command.ExecuteReader();
                     while (reader.Read())
@@ -349,6 +349,9 @@ namespace Fin
         {
             try
             {
+                ((ListBoxItem)(list.Items[list.SelectedIndex])).IsEnabled = false;
+                bl[list.SelectedIndex] = 300;
+
                 int MaxHP = 0;
                 But_skill1.Content = "";
                 But_skill4.Content = "";

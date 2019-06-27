@@ -27,7 +27,7 @@ namespace Fin
             InitializeComponent();
 
             if (st == "hehe") { lb.Text = "🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\nПоздравляем Ваши герои сгорели!\nИ они благодарны вам\n🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥"; heImg.Visibility = Visibility.Visible; }
-            if (st == "gg ez") lb.Text = "Вы умудрились проиграть этим легчайшим противникам.\n Один вопрос - «КАК???»";
+            if (st == "gg ez") lb.Text = "Вы умудрились проиграть\nэтим легчайшим противникам.\n Один вопрос - «КАК???»";
             if (st == "stupid end") { lb.Text = "На этом всё!\nТеперь ничего нет"; ah_s00t_here_we_go_again.Visibility = Visibility.Hidden; }
 
         }
