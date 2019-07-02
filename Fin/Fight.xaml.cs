@@ -38,8 +38,7 @@ namespace Fin
         int[] bl = new int[3];
         string Enem_Name;
         //string Enem_Name = "Xorn";
-
-
+        
         int i = 200;
 
         public Fight(string hoho)
@@ -54,7 +53,7 @@ namespace Fin
             player.Play();
             player.MediaEnded += player_Media_Ended;
 
-           
+           That_enem.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resource/Image/"+ Enem_Name + ".png", UriKind.Absolute));
 
             dbskills = new SQLiteConnection("Data Source="+ System.AppDomain.CurrentDomain.BaseDirectory + "\\Resource\\DB\\DBMain.db;Version=3;");
             //dbskills = new SQLiteConnection("Data Source=C://Users//Admin//Source//Repos//Fin//Fin//Resource//DB//DBMain.db;Version=3;");
@@ -85,7 +84,7 @@ namespace Fin
 
 
             HPCh.Tick += HPCh_Timer_Tick;
-            HPCh.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            HPCh.Interval = new TimeSpan(0, 0, 0, 0, 1);
             HPCh.Start();
 
 
@@ -205,10 +204,10 @@ namespace Fin
                     {
                         if (List_hl.Items.Count == 0)
                             Lose();
-                        else
+                        else 
                             cuD = random.Next(int.Parse(reader["Damage"].ToString()) - 5, int.Parse(reader["Damage"].ToString()) + 5);
                         if (HpH[List_hl.Items.GetItemAt(b).ToString()] - cuD <= 0)
-                        { HpH.Remove(List_hl.Items.GetItemAt(b).ToString()); List_hl.Items.RemoveAt(b); list.Items.RemoveAt(b); }
+                        { HP_Hero1.Content = "Пал"; HP_Hero2.Content = ""; HP_Hero3.Content = ""; HpH.Remove(List_hl.Items.GetItemAt(b).ToString()); List_hl.Items.RemoveAt(b); list.Items.RemoveAt(b); }
                         else
                             HpH[List_hl.Items.GetItemAt(b).ToString()] -= cuD;
 

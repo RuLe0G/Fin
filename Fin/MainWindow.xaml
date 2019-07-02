@@ -11,12 +11,13 @@
 
             <Canvas x:Name="scene" Height="600" Width="1838">
                 <Image Height="600" Source="Map.png" Stretch="Fill" Width="1838"/>
-                <Button Content="Button" Canvas.Left="419" Canvas.Top="472" Width="169" Click="Button_Click" Height="125"/>
+                <Button Content="Button" Canvas.Left="635" Canvas.Top="446" Width="169" Click="Button_Click" Height="125"/>
 
                 <Rectangle x:Name="DeepDarkHole"  Width="43" Height="597" />
-                <Rectangle x:Name="DeepDarkForest1"  Width="592" Height="164" Canvas.Left="43" Canvas.Top="426" />
-                <Rectangle x:Name="DeepDarkForest2"  Width="545" Height="51" Canvas.Left="43" />
-                <Rectangle x:Name="DeepDarkRiverD"  Width="92" Height="412" Canvas.Left="598" Canvas.Top="178" />
+                <Rectangle x:Name="DeepDarkForest1"  Width="316" Height="164" Canvas.Left="43" Canvas.Top="426" />
+                <Rectangle x:Name="DeepDarkForest2"  Width="147" Height="130" Canvas.Left="359" Canvas.Top="467" />
+                <Rectangle x:Name="DeepDarkForest3"  Width="148" Height="85" Canvas.Left="506" Canvas.Top="512" />
+                <Rectangle x:Name="DeepDarkRiverD"  Width="92" Height="132" Canvas.Left="598" Canvas.Top="178" />
                 <Rectangle x:Name="DeepDarkRiverU"  Width="92" Height="146" Canvas.Left="598" />
                 <Rectangle x:Name="DeepDarkRiverDD"  Width="1133" Height="38" Canvas.Left="695" Canvas.Top="562" />
                 <Rectangle x:Name="DeepDarkCastle"  Width="1138" Height="51" Canvas.Left="690" />

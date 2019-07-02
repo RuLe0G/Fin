@@ -65,7 +65,14 @@ namespace Fin
             Enemy_zone1.RenderTransform = new TranslateTransform(419, 56);
             Enemy_zone2.RenderTransform = new TranslateTransform(1010, 183);
             floor_is_lava.RenderTransform = new TranslateTransform(1791, 10);
-            
+
+
+
+            DeepDarkForest1.RenderTransform = new TranslateTransform(43, 426);
+            DeepDarkForest2.RenderTransform = new TranslateTransform(370, 467);
+            DeepDarkForest3.RenderTransform = new TranslateTransform(506, 512);
+
+
 
             //SolidColorBrush mySolidColorBrush = new SolidColorBrush();
             //mySolidColorBrush.Color= Color.FromArgb(255, 255, 255, 0);
@@ -88,7 +95,47 @@ namespace Fin
             Rect Enemy_zonee1 = Enemy_zone1.RenderTransform.TransformBounds(Enemy_zone1.RenderedGeometry.Bounds);
             Rect Enemy_zonee2 = Enemy_zone2.RenderTransform.TransformBounds(Enemy_zone2.RenderedGeometry.Bounds);
             Rect Herorect = hero.RenderTransform.TransformBounds(hero.RenderedGeometry.Bounds);
+            
+            //Перес
             Rect Deep = DeepDarkHole.RenderTransform.TransformBounds(DeepDarkHole.RenderedGeometry.Bounds);
+            if (Herorect.IntersectsWith(Deep) == true)
+            {
+                if ((Deep.X + Deep.Width) >= Herorect.X) { hero.RenderTransform = new TranslateTransform(x + 2, y); x += 2; }
+            }
+            Rect Forest1 = DeepDarkForest1.RenderTransform.TransformBounds(DeepDarkForest1.RenderedGeometry.Bounds);
+            if (Herorect.IntersectsWith(Forest1) == true)
+            {
+                if (Forest1.Y >= (Herorect.Y - Herorect.Height)) { hero.RenderTransform = new TranslateTransform(x, y - 3); y -= 3; goto br; }
+                if ((Forest1.Y + Forest1.Height) <= Herorect.Y) { hero.RenderTransform = new TranslateTransform(x, y + 3); y += 3; goto br; }
+                if ((Forest1.X + Forest1.Width) >= Herorect.X) { hero.RenderTransform = new TranslateTransform(x + 3, y); x += 3; goto br; }
+                if (Forest1.X <= (Herorect.X + Herorect.Width)) { hero.RenderTransform = new TranslateTransform(x - 3, y); x -= 3; goto br; }
+
+            br:;
+            }
+            Rect Forest2 = DeepDarkForest2.RenderTransform.TransformBounds(DeepDarkForest2.RenderedGeometry.Bounds);
+            if (Herorect.IntersectsWith(Forest2) == true)
+            {
+                if (Forest2.Y >= (Herorect.Y - Herorect.Height)) { hero.RenderTransform = new TranslateTransform(x, y - 2); y -= 2; goto br; }
+                if ((Forest2.Y + Forest2.Height) <= Herorect.Y) { hero.RenderTransform = new TranslateTransform(x, y + 2); y += 2; goto br; }
+                if ((Forest2.X + Forest2.Width) >= Herorect.X) { hero.RenderTransform = new TranslateTransform(x + 2, y); x += 2; goto br; }
+                if (Forest2.X <= (Herorect.X + Herorect.Width)) { hero.RenderTransform = new TranslateTransform(x - 2, y); x -= 2; goto br; }
+
+            br:;
+            }
+            Rect Forest3 = DeepDarkForest3.RenderTransform.TransformBounds(DeepDarkForest3.RenderedGeometry.Bounds);
+            if (Herorect.IntersectsWith(Forest3) == true)
+            {
+                if (Forest3.Y >= (Herorect.Y - Herorect.Height)) { hero.RenderTransform = new TranslateTransform(x, y - 2); y -= 2; goto br; }
+                if ((Forest3.Y + Forest3.Height) <= Herorect.Y) { hero.RenderTransform = new TranslateTransform(x, y + 2); y += 2; goto br; }
+                if ((Forest3.X + Forest3.Width) >= Herorect.X) { hero.RenderTransform = new TranslateTransform(x + 2, y); x += 2; goto br; }
+                if (Forest3.X <= (Herorect.X + Herorect.Width)) { hero.RenderTransform = new TranslateTransform(x - 2, y); x -= 2; goto br; }
+
+            br:;
+            }
+
+
+
+
             Scroll.ScrollToHorizontalOffset((Herorect.Left - 100)/1.5);
             if (Herorect.IntersectsWith(Enemy_zonee1) == true)
             {
@@ -118,10 +165,7 @@ namespace Fin
                 }
                 catch { }
             }
-            if (Herorect.IntersectsWith(Deep) == true)
-            {
-                
-            }
+            
 
 
                 timer.Start();
