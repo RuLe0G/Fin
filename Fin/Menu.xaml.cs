@@ -70,7 +70,7 @@ namespace Fin
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            MenuPage.NavigationService.Navigate(new GG("stupid end"));
+            MenuPage.NavigationService.Navigate(new GG("how"));
         }
     }
 }

@@ -10,9 +10,11 @@
 
     <Grid Width="800" Height="600">
         <Image Name="heImg" Margin="1,0,0,-0.4" Source="hehe_boii.jpeg"  Visibility="Hidden" Stretch="Fill"/>
-        <TextBlock  x:Name="lb"  Text="end." HorizontalAlignment="Left" Margin="362,417,0,0" VerticalAlignment="Top" Height="137" Width="330" Background="Black" FontFamily="Comic Sans MS" FontSize="20" Foreground="White"/>
-        <Button x:Name="ah_s00t_here_we_go_again" Content="Мне еще мало" HorizontalAlignment="Left" Margin="677,10,0,0" VerticalAlignment="Top" Width="113" Height="46" Background="Black" Foreground="White" FontFamily="Comic Sans MS" Click="Ah_s00t_here_we_go_again_Click"/>
+        <TextBlock  x:Name="lb"  Text="" HorizontalAlignment="Left" Margin="362,417,0,0" VerticalAlignment="Top" Height="137" Width="330" Background="Black" FontFamily="Comic Sans MS" FontSize="20" Foreground="White"/>
+        <Button x:Name="ah_s00t_here_we_go_again" Content="В меню" HorizontalAlignment="Left" Margin="677,10,0,0" VerticalAlignment="Top" Width="113" Height="46" Background="Black" Foreground="White" FontFamily="Comic Sans MS" Click="Ah_s00t_here_we_go_again_Click"/>
         <Button x:Name="Exit" Content="Пожалуй закончим" HorizontalAlignment="Left" Margin="677,56,0,0" VerticalAlignment="Top" Width="113" Height="46" Background="Black" Foreground="White" FontFamily="Comic Sans MS" Click="Exit_Click"/>
-
+        
+        <Image x:Name="Tut1" Margin="246,179,0,46" Source="Screenshot_1.png" Stretch="Fill"/>
+<Image x:Name="tut2" Margin="0,0,398,340" Source="Screenshot_13.png" Stretch="Fill"/>
     </Grid>
 </Page>

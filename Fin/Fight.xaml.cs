@@ -47,7 +47,7 @@ namespace Fin
             InitializeComponent();
             Timer_Enem.Value = 1000;
 
-            //player.Open(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + "\\Resource\\OST\\Fight_theme.mp3", UriKind.Relative));
+            player.Open(new Uri(System.AppDomain.CurrentDomain.BaseDirectory + "\\Resource\\OST\\Fight_theme.mp3", UriKind.Absolute));
             //player.Open(new Uri("D://Prog//Fin//Fin//Resource//OST//Fight_theme.mp3", UriKind.Absolute));
             player.Volume = 0.10;
             player.Play();
@@ -172,16 +172,47 @@ namespace Fin
        
         private void HPCh_Timer_Tick(object sender, EventArgs e)
         {
-            try
-            {
-                HP_Hero1.Content = HpH["Hero1"]; 
-                  HP_Hero2.Content = HpH["Hero2"];  
-                 HP_Hero3.Content = HpH["Hero3"]; 
-                HP_enem1.Content = HpE["Xorn"];  
-                 HP_enem2.Content = HpE["Snake"];  
+          
+                if (HpH.ContainsKey("Hero1"))
+                {
+                    HP_Hero1.Content = HpH["Hero1"];
+                }
+                else
+                {
+                    HP_Hero1.Content = "Пал";
+                }
 
+            if (HpH.ContainsKey("Hero2"))
+            {
+                HP_Hero2.Content = HpH["Hero2"];
             }
-            catch { }
+            else
+            {
+                HP_Hero2.Content = "Пал";
+            }
+            if (HpH.ContainsKey("Hero3"))
+            {
+                HP_Hero3.Content = HpH["Hero3"];
+            }
+            else
+            {
+                HP_Hero3.Content = "Пал";
+            }
+
+
+            //try
+            //{
+            //    HP_Hero2.Content = HpH["Hero2"];
+            //}
+            //catch { }
+            //try
+            //{
+            //    HP_Hero3.Content = HpH["Hero3"];
+            //}
+            //catch { }
+            //HP_enem1.Content = HpE["Xorn"];  
+            // HP_enem2.Content = HpE["Snake"];  
+
         }
 
         private void Enem_Timer_Tick(object sender, EventArgs e)
@@ -207,7 +238,7 @@ namespace Fin
                         else 
                             cuD = random.Next(int.Parse(reader["Damage"].ToString()) - 5, int.Parse(reader["Damage"].ToString()) + 5);
                         if (HpH[List_hl.Items.GetItemAt(b).ToString()] - cuD <= 0)
-                        { HP_Hero1.Content = "Пал"; HP_Hero2.Content = ""; HP_Hero3.Content = ""; HpH.Remove(List_hl.Items.GetItemAt(b).ToString()); List_hl.Items.RemoveAt(b); list.Items.RemoveAt(b); }
+                        { HpH.Remove(List_hl.Items.GetItemAt(b).ToString()); List_hl.Items.RemoveAt(b); list.Items.RemoveAt(b); }
                         else
                             HpH[List_hl.Items.GetItemAt(b).ToString()] -= cuD;
 

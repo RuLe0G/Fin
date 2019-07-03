@@ -26,7 +26,7 @@
                 </Button.Background>
             </Button>
 
-            <Button Grid.Row="2" Content="Не нажимай" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Foreground="White" FontFamily="Comic Sans MS" Click="Button_Click_2" >
+            <Button Grid.Row="2" Content="Как в это?" Width="220" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Foreground="White" FontFamily="Comic Sans MS" Click="Button_Click_2" >
                 <Button.Background>
                     <ImageBrush ImageSource="Resource/Image/Button.jpg"/>
                 </Button.Background>

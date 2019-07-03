@@ -141,7 +141,7 @@ namespace Fin
             {
                 try
                 {
-                    int r = Random.Next(0, 500);
+                    int r = Random.Next(0, 300);
                     if (r == 1) MainPage.NavigationService.Navigate(new Fight("Snake"));
                 }
                 catch { }
@@ -150,7 +150,7 @@ namespace Fin
             {
                 try
                 {
-                    int r = Random.Next(0, 600);
+                    int r = Random.Next(0, 400);
                     if (r <= 1)
                         MainPage.NavigationService.Navigate(new Fight("Xorn"));
                 }

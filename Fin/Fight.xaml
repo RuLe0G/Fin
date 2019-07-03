@@ -28,7 +28,7 @@
         <Label x:Name="lb" Content="Label" Canvas.Left="599" Canvas.Top="438" Width="191" Visibility="Hidden"/>
         <ListBox x:Name="List_enem" Height="76" Canvas.Left="11" Canvas.Top="477" Width="281" Background="Black" BorderBrush="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" SelectionChanged="List_enem_SelectionChanged"/>
         <ListBox x:Name="List_hl" Height="76" Canvas.Left="10" Canvas.Top="476" Visibility="Hidden" Width="285" Background="Black" BorderBrush="White"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="White" SelectionChanged="List_hl_SelectionChanged"/>
-        <Label x:Name="HP_enem1" Content="Label" Canvas.Left="10" Canvas.Top="10" Width="143"/>
+        <Label x:Name="HP_enem1" Content="Label" Canvas.Left="10" Canvas.Top="10" Width="143"/>       
         <Label x:Name="HP_enem2" Content="Label" Canvas.Left="10" Canvas.Top="35" Width="143"/>
         <Rectangle x:Name="t_Copy" Width="283" Height="78" Canvas.Left="9" Canvas.Top="474" Fill="Black" Stroke="White"/>
         <Label x:Name="HP_Hero1" Content="Label" Canvas.Left="599" Canvas.Top="177" Width="76" Background="Black" Foreground="White"/>
